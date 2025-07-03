@@ -106,7 +106,7 @@ Teachers can register, set their availability, view upcoming appointments, and a
    ```bash
    git clone https://github.com/your‑username/student‑teacher‑appointment.git
    cd student‑teacher‑appointment
-````
+```
 
 2. **Install dependencies**
 
