@@ -1,4 +1,4 @@
-import express from "express"; // ✅ FIX: removed 'c' before import
+import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -12,31 +12,64 @@ import teacherAuth from "../middlewares/teacherauth.js";
 
 const router = express.Router();
 
-// ✅ Update Appointment Status
+/**
+ * @route   PUT /api/v1/teacher/appointments/:id
+ * @desc    Update appointment status (accept/reject)
+ * @access  Private (Teacher)
+ */
 router.put("/appointments/:id", authMiddleware, teacherAuth, async (req, res) => {
   try {
     const { _id, status } = req.body;
 
-    const appointments = await Session.findByIdAndUpdate(_id, { status });
+    const appointment = await Session.findByIdAndUpdate(_id, { status });
 
     res.status(200).send({
       success: true,
-      message: "Appointment Status Updated",
+      message: "Appointment status updated",
     });
-
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 });
 
-// ✅ Get Teacher Info & Appointments
+/**
+ * @route   GET /api/v1/teacher/appointments
+ * @desc    Get all appointments for the logged-in teacher
+ * @access  Private (Teacher)
+ */
+router.get("/appointments", authMiddleware, teacherAuth, async (req, res) => {
+  try {
+    const teacherId = req.body.userId; // Added by authMiddleware
+
+    const appointments = await Session.find({ teacherID: teacherId })
+      .populate("studentID", "name email") // Populate student name/email
+      .sort({ createdAt: -1 });
+
+    res.status(200).send({
+      success: true,
+      appointments,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error fetching appointments",
+    });
+  }
+});
+
+/**
+ * @route   POST /api/v1/teacher/get-teacher-by-id
+ * @desc    Get teacher info + their appointments
+ * @access  Private (Teacher)
+ */
 router.post("/get-teacher-by-id", authMiddleware, teacherAuth, async (req, res) => {
   try {
     const teacherid = req.body.teacherID;
 
-    const teacher = await TeacherModel.findById(teacherid);
+    const teacher = await Teacher.findById(teacherid);
     const appointments = await Session.find({ teacherID: teacherid })
-      .sort({ "dateTime.date": 1, "dateTime.time": 1 });
+      .populate("studentID", "name email")
+      .sort({ createdAt: -1 });
 
     res.status(200).send({
       success: true,
@@ -48,11 +81,10 @@ router.post("/get-teacher-by-id", authMiddleware, teacherAuth, async (req, res) 
         appointmentsList: appointments,
       },
     });
-
   } catch (error) {
     res.status(500).send({
-      message: "Error getting teacher info",
       success: false,
+      message: "Error getting teacher info",
     });
   }
 });

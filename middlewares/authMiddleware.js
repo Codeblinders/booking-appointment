@@ -19,8 +19,12 @@ const authMiddleware = (req, res, next) => {
         });
       }
 
+      // ✅ Ensure req.body is initialized
+      if (!req.body) req.body = {};
+
       req.body.role = decoded.myRole;
       req.body.userId = decoded.id;
+
       next();
     });
   } catch (error) {

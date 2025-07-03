@@ -27,7 +27,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Teacher Mentorship
+      Vivek Yadav
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -73,7 +73,7 @@ function Login() {
     }
     // // console.log(data);
     try{
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/login`,{
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/login`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -192,13 +192,3 @@ function Login() {
 
 
 export {Login}
-
-// function Login(){
-//   return (
-//       <div>
-//           Login page
-//       </div>
-//   )
-// }
-
-// export { Login }
