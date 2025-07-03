@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import {register} from "register";
 
 function Copyright(props) {
   return (
