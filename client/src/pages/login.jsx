@@ -22,6 +22,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
+
 const defaultTheme = createTheme();
 
 function Login() {
@@ -168,7 +169,6 @@ function Login() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   )
