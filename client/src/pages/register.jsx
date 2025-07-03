@@ -18,19 +18,6 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 
-// Copyright footer
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Vivek Yadav
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const defaultTheme = createTheme();
 
@@ -178,7 +165,6 @@ function Register() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
