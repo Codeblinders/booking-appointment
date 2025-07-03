@@ -5,6 +5,9 @@ Students can register, browse teacher availability, and book appointment slots.
 Teachers can register, set their availability, view upcoming appointments, and approve or cancel requests.
 
 ---
+## 🚀 Live Demo
+
+Check out the deployed app on Vercel: https://booking-appointment-blue.vercel.app/
 
 ## 🚀 Features
 
