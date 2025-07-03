@@ -21,20 +21,6 @@ import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-      Vivek Yadav
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
@@ -94,7 +80,7 @@ function Login() {
     }
     catch(error){
       setIsLoading(false)
-      // console.log("Something went wrong",error);
+      console.log(error);
     }
   };
   useEffect(()=>{
