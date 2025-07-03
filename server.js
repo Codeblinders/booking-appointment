@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['http://localhost:5173' , 'https://booking-appointment-blue.vercel.app' , 'https://booking-appointment-vivek-yadavs-projects-1528f86b.vercel.app ' , 'https://booking-appointment-git-main-vivek-yadavs-projects-1528f86b.vercel.app' ];
 
 app.use(cors({
   origin: function (origin, callback) {
