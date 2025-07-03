@@ -1,4 +1,3 @@
-```markdown
 # Student‑Teacher Appointment System
 
 A full‑stack web application that lets students and teachers manage one‑on‑one appointments.  
